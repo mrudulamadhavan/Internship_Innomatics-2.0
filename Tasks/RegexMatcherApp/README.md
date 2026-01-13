@@ -15,4 +15,14 @@ A  Flask-based web application that clones the **core functionality** of regex10
 
 > <img width="324" height="290" alt="image" src="https://github.com/user-attachments/assets/f0099785-6210-436b-a791-9010b3c7b1d3" />
 
+## ▶️ Run the Application
 
+### 1️⃣ Start the Flask server
+```bash
+python app.py
+```
+
+### 2️⃣ Open in Browser
+👉 http://127.0.0.1:5000/
+
+---
