@@ -13,5 +13,6 @@ A  Flask-based web application that clones the **core functionality** of regex10
 ---
 ## 📂 Project Structure
 
-<img width="257" height="274" alt="image" src="https://github.com/user-attachments/assets/dc6a13e3-6bbe-4c0d-a62c-45b496daf0d6" />
+> <img width="324" height="290" alt="image" src="https://github.com/user-attachments/assets/f0099785-6210-436b-a791-9010b3c7b1d3" />
+
 
