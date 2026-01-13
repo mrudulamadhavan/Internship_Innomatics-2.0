@@ -13,12 +13,5 @@ A  Flask-based web application that clones the **core functionality** of regex10
 ---
 ## 📂 Project Structure
 
-regex_matcher_app/
-│── app.py
-│── README.md
-│
-└── templates/
-    │── query.html
-    │── result.html
+<img width="257" height="274" alt="image" src="https://github.com/user-attachments/assets/dc6a13e3-6bbe-4c0d-a62c-45b496daf0d6" />
 
----
