@@ -11,7 +11,7 @@ A  Flask-based web application that clones the **core functionality** of regex10
 - **MULTILINE (m)**  
 
 ---
-## **Project Structure**
+## 📂 Project Structure
 
 regex_matcher_app/
 │── app.py
@@ -21,3 +21,4 @@ regex_matcher_app/
     │── query.html
     │── result.html
 
+---
