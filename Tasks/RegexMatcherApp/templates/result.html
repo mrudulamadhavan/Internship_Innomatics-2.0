@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Regex Matcher Result</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f2f4f8;
+            padding: 30px;
+        }
+
+        .box {
+            max-width: 1050px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 14px;
+            box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
+        }
+
+        h1{
+            text-align:center;
+            color:#1f2937;
+            margin-bottom: 0;
+        }
+
+        h4{
+            text-align:center;
+            margin-top: 8px;
+            color: #374151;
+        }
+
+        h2{
+            text-align:center;
+            color:#1f2937;
+        }
+
+        .divider {
+            margin: 18px 0;
+            border: none;
+            height: 2px;
+            background: #e5e7eb;
+        }
+
+        .error {
+            background: #ffe5e5;
+            padding: 12px;
+            border-radius: 10px;
+            color: #b00020;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+
+        pre {
+            background: #f8fafc;
+            padding: 14px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+            white-space: pre-wrap;
+        }
+
+        mark {
+            background: #ffe58a;
+            padding: 2px 4px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        th, td {
+            padding: 12px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            background: #eaf2ff;
+        }
+
+        .group-box {
+            margin-top: 8px;
+            padding: 10px;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .nomatch {
+            font-weight: bold;
+            color: #444;
+            margin-top: 15px;
+        }
+
+        .try-btn{
+            display: block;
+            width: 250px;
+            margin: 25px auto 0;
+            text-align: center;
+            padding: 12px 16px;
+            background: #22c55e;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+        .try-btn:hover{
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <h1>📌 Regex Matcher Application 📌</h1>
+        <h4><i> ~ Mini regex101 Clone ~ </i></h4>
+        <hr class="divider">
+
+        {% if error %}
+            <div class="error">❌ {{ error }}</div>
+        {% else %}
+
+            
+            <table>
+                
+                <tr>
+                    <td><b>Regex Used</b></td>
+                    <td>{{ regex }}</td>
+                </tr>
+                <tr>
+                    <td><b>Flags Selected</b></td>
+                    <td>
+                        {% if ignorecase %} IGNORECASE {% endif %}
+                        {% if multiline %} MULTILINE {% endif %}
+                        {% if not ignorecase and not multiline %} None {% endif %}
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Total Matches Found</b></td>
+                    <td>{{ count }}</td>
+                </tr>
+            </table>
+
+            <h2>🟡 Highlighted Matches Preview</h2>
+            <pre>{{ highlighted | safe }}</pre>
+
+            <h2>📌 Matches Table</h2>
+
+            {% if count == 0 %}
+                <p class="nomatch">No matches found ❌</p>
+            {% else %}
+                <table>
+                    <tr>
+                        <th>#</th>
+                        <th>Matched Text</th>
+                        <th>Start</th>
+                        <th>End</th>
+                        <th>Groups</th>
+                    </tr>
+
+                    {% for m in matches %}
+                    <tr>
+                        <td>{{ m.no }}</td>
+                        <td>{{ m.text }}</td>
+                        <td>{{ m.start }}</td>
+                        <td>{{ m.end }}</td>
+                        <td>
+                            {% if m.groups|length == 0 %}
+                                No groups
+                            {% else %}
+                                <div class="group-box">
+                                    {% for g in m.groups %}
+                                        <div><b>Group {{ g.group_no }}:</b> {{ g.value }}</div>
+                                    {% endfor %}
+                                </div>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endif %}
+        {% endif %}
+
+        <a href="/" class="try-btn">Try Another Test String</a>
+    </div>
+</body>
+</html>
