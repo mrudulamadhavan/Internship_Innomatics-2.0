@@ -11,14 +11,9 @@ A  Flask-based web application that clones the **core functionality** of regex10
 - **MULTILINE (m)**  
 
 ---
-
-## 🚀 Features
-- Clean UI (2 pages)
-- Match highlighting preview
-- Matches displayed in table format
-- Handles invalid regex errors
-- Try Another Test String button
-
----
-
-## 📂 Project Structure
+## **Project Structure**
+regex_app/
+│-- app.py
+└── templates/
+│-- query.html
+└── result.html
