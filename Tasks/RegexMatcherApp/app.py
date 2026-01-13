@@ -3,9 +3,9 @@ import re
 
 app = Flask(__name__)
 
-# =========================================================
-#                 HELPER FUNCTIONS
-# =========================================================
+# -------------------------------------------------------
+# HELPER FUNCTIONS
+
 def build_flags(form):
     """Only 2 flags: IGNORECASE and MULTILINE"""
     flags = 0
@@ -39,10 +39,9 @@ def highlight_matches(text, matches):
 
     return "".join(result)
 
+# ------------------------------------------
+# Routes
 
-# =========================================================
-#                     ROUTES
-# =========================================================
 @app.route("/", methods=["GET"])
 def home():
     return render_template("query.html")
@@ -110,11 +109,8 @@ def result():
         multiline=multiline
     )
 
-
-# =========================================================
-#                     MAIN DRIVER
-# =========================================================
 if __name__ == "__main__":
     print("🚀 Regex Matcher Application Running...")
     print("👉 Open: http://127.0.0.1:5000/")
     app.run(debug=True)
+
