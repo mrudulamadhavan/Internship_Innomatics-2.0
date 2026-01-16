@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Note</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 650px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    .btn-group {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    .update-btn {
+      background: #000;
+      color: white;
+    }
+
+    .update-btn:hover {
+      background: #333;
+    }
+
+    .cancel-btn {
+      background: #999;
+      color: white;
+    }
+
+    .cancel-btn:hover {
+      background: #777;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>✏️ Edit Note</h1>
+
+    <form method="POST">
+      <input type="text" name="title" value="{{ note.title }}" required />
+      <textarea name="note" required>{{ note.content }}</textarea>
+
+      <div class="btn-group">
+        <button type="submit" class="update-btn">Update</button>
+
+        <a href="{{ url_for('home') }}" style="flex:1;">
+          <button type="button" class="cancel-btn">Cancel</button>
+        </a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>

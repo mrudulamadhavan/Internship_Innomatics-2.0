@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Notes App</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 5px;
+    }
+
+    p {
+      text-align: center;
+      color: gray;
+      margin-top: 0;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 10px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 14px;
+      box-sizing: border-box;
+    }
+
+    textarea {
+      resize: none;
+      height: 120px;
+    }
+
+    .save-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background: black;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .save-btn:hover {
+      background: #333;
+    }
+
+    hr {
+      margin: 25px 0;
+    }
+
+    .sort-box {
+      margin-bottom: 20px;
+    }
+
+    select {
+      padding: 10px;
+      border-radius: 8px;
+      margin-left: 10px;
+    }
+
+    .note-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #f9fafc;
+      padding: 12px;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      border-left: 5px solid black;
+    }
+
+    .note-title {
+      font-weight: bold;
+      text-decoration: none;
+      color: black;
+      flex: 1;
+    }
+
+    .note-title:hover {
+      text-decoration: underline;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 8px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    .edit-btn {
+      background: #0275d8;
+      color: white;
+    }
+
+    .delete-btn {
+      background: #ff4d4d;
+      color: white;
+    }
+
+    .clear-btn {
+      width: 100%;
+      margin-top: 15px;
+      padding: 12px;
+      background: #d9534f;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .empty-msg {
+      text-align: center;
+      color: gray;
+      font-style: italic;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>📝 NoteVault</h1>
+    <p style="text-align:center; color:gray; margin-top:0;">
+       Lock in your notes !!
+      </p>
+
+    <!-- Add Note -->
+    <form method="POST">
+      <input type="text" name="title" placeholder="Enter title" required />
+      <textarea name="note" placeholder="Enter your note here..." required></textarea>
+      <button type="submit" class="save-btn">Save Note</button>
+    </form>
+
+    <hr />
+
+    <!-- Sort -->
+    <form method="GET" class="sort-box">
+      <label for="sort"><b>Sort:</b></label>
+      <select name="sort" id="sort" onchange="this.form.submit()">
+        <option value="latest" {% if sort_by == "latest" %}selected{% endif %}>Latest First</option>
+        <option value="oldest" {% if sort_by == "oldest" %}selected{% endif %}>Oldest First</option>
+        <option value="title" {% if sort_by == "title" %}selected{% endif %}>Title (A-Z)</option>
+      </select>
+    </form>
+
+    <h2>📌 Saved Notes</h2>
+
+    {% if notes|length == 0 %}
+      <p class="empty-msg">No notes added yet.</p>
+    {% else %}
+      {% for note in notes %}
+        <div class="note-row">
+          <!-- Clicking title opens view page -->
+          <a class="note-title" href="{{ url_for('view_note', note_id=note.id) }}">
+            {{ note.title }}
+          </a>
+
+          <div class="btn-group">
+            <a href="{{ url_for('edit_note', note_id=note.id) }}">
+              <button type="button" class="btn edit-btn">Edit</button>
+            </a>
+
+            <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST">
+              <button type="submit" class="btn delete-btn">Delete</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+
+      <form action="{{ url_for('clear_notes') }}" method="POST">
+        <button type="submit" class="clear-btn">Clear All Notes</button>
+      </form>
+    {% endif %}
+  </div>
+</body>
+</html>

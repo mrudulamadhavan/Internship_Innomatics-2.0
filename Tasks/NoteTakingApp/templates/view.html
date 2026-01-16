@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>View Note</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f9;
+      padding: 20px;
+    }
+
+    .container {
+      max-width: 750px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .content-box {
+      background: #f9fafc;
+      padding: 15px;
+      border-radius: 8px;
+      border-left: 5px solid black;
+      white-space: pre-wrap;
+    }
+
+    .btn-group {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .btn {
+      padding: 10px 15px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .edit-btn {
+      background: #0275d8;
+      color: white;
+    }
+
+    .delete-btn {
+      background: #ff4d4d;
+      color: white;
+    }
+
+    .back-btn {
+      background: #999;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>{{ note.title }}</h1>
+
+    <div class="content-box">{{ note.content }}</div>
+
+
+    <div class="btn-group">
+      <a href="{{ url_for('edit_note', note_id=note.id) }}">
+        <button type="button" class="btn edit-btn">Edit</button>
+      </a>
+
+      <form action="{{ url_for('delete_note', note_id=note.id) }}" method="POST">
+        <button type="submit" class="btn delete-btn">Delete</button>
+      </form>
+
+      <a href="{{ url_for('home') }}">
+        <button type="button" class="btn back-btn">Back</button>
+      </a>
+    </div>
+  </div>
+</body>
+</html>
