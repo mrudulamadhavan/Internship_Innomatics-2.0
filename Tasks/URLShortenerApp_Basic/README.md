@@ -1,6 +1,10 @@
-# 🔗 URL Shortener Web Application (Flask)
+# 🔗 URL Shortener Web Application
 
-A simple **URL Shortener Web Application** built using **Flask & SQLAlchemy**.
+- *A simple **URL Shortener Web Application** built using **Flask & SQLAlchemy**.*
+
+A URL Shortener is a web application that converts a long URL (Uniform Resource Locator) into a shorter and more manageable link. This helps users share links easily without copying long web addresses.
+
+URL shorteners work by creating a redirect from the short URL to the original long URL. When the short URL is opened in a browser, the user is redirected automatically to the original website.
 
 Users can:
 - Enter a long URL
